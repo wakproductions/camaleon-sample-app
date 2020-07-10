@@ -1,0 +1,45 @@
+version: '3'
+services:
+  backend:
+    build: ./
+    command: ['rails', 'server', '-b', '0.0.0.0', '-p', '3000']
+    depends_on:
+      - db
+    entrypoint: ['./scripts/docker-entry.sh']
+    environment:
+      DATABASE_URL: ${DATABASE_URL}
+#      DB_PASSWORD: ${DB_PASSWORD:-localdev}
+      RAILS_ENV: ${RAILS_ENV:-development}
+      RAILS_SERVE_STATIC_FILES: ${RAILS_SERVE_STATIC_FILES:-false}
+      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
+    links:
+      - db
+    networks:
+      - cameleon_cms_sample
+    ports:
+      - '8092:3000'
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/backend
+
+  db:
+    command: ['postgres']
+    container_name: cameleon_cms_sample_database
+    environment:
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-localdev}
+    image: 'postgres:12.3'
+    networks:
+      - cameleon_cms_sample
+    ports:
+      - '5423:5432'
+    volumes:
+      - pgdata_123:/var/lib/postgresql/data
+
+networks:
+  cameleon_cms_sample:
+    external: true
+
+volumes:
+  pgdata_123:
+    external: true
