@@ -1,15 +1,19 @@
 default: &default
   adapter: postgresql
-  database_url: <%= ENV.fetch('DATABASE_URL') %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: postgres
+  host: <%= ENV.fetch('DB_HOSTNAME') %>
+  username: <%= ENV.fetch('DB_USERNAME') %>
+  password: <%= ENV.fetch('DB_PASSWORD') %>
   timeout: 5000
 
 development:
   <<: *default
+  database: cameleon_cms_sample_development
 
 test:
   <<: *default
+  database: camaleon_cms_sample_test
 
 production:
   <<: *default
+  database: camaleon_cms_sample_production
