@@ -23,6 +23,7 @@ services:
     tty: true
     volumes:
       - ./:/backend
+#      - ../camaleon-cms:/usr/local/bundle/gems/camaleon_cms-2.5.3
 
   db:
     command: ['postgres']

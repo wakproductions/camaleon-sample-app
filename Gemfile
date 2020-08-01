@@ -6,6 +6,7 @@ ruby '2.7.1'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'camaleon_cms'
+gem 'draper', '~> 3'
 gem 'pg'
 gem 'puma', '~> 4.1'
 gem 'sass-rails', '>= 6'

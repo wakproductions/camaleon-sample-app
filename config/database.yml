@@ -8,7 +8,7 @@ default: &default
 
 development:
   <<: *default
-  database: cameleon_cms_sample_development
+  database: camaleon_cms_sample_development
 
 test:
   <<: *default
